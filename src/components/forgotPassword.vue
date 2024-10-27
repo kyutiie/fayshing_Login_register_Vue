@@ -1,37 +1,39 @@
 <template>
-    <div class="login-container">
-      <div class="background-image"></div>
-      <div class="login-box">
-        <img src="@/assets/logo_orange.png" alt="Fayshing Hardware Logo" class="logo" />
+  <div class="login-container">
+    <div class="background-image"></div>
+    <div class="login-box">
+      <img src="@/assets/logo_orange.png" alt="Fayshing Hardware Logo" class="logo" />
+      
+      <form @submit.prevent="submitForm">
+        <label for="email">Email</label>
+        <input type="email" id="email" v-model="email" placeholder="Enter your email" required />
         
-        <form @submit.prevent="submitForm">
-          <label for="email">Email</label>
-          <input type="email" id="email" v-model="email" placeholder="Enter your email" required />
-          
-          <button type="submit" class="login-btn">SUBMIT</button>
-        </form>
-        
-        <p class="register-text">
-          Remembered your password? <router-link to="/" class="link">Log In</router-link>
-        </p>
-      </div>
+        <button type="submit" class="login-btn">SUBMIT</button>
+      </form>
+      
+      <p class="register-text">
+        Remembered your password? <router-link to="/" class="link">Log In</router-link>
+      </p>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        email: ''
-      };
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      email: ''
+    };
+  },
+  methods: {
+    submitForm() {
+      console.log(`Email submitted: ${this.email}`);
+      this.$router.push({ path: '/newpassword', query: { email: this.email } });
     },
-    methods: {
-      submitForm() {
-        console.log(`Email submitted: ${this.email}`);
-      },
-    },
-  };
-  </script>
+  },
+};
+</script>
+
   
   <style scoped>
   * {
